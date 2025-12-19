@@ -10,6 +10,8 @@ Forked from https://github.com/Lukewh/fantasy-name.
 
 
 - Use Ctrl - P on Windows to open commands and type 'name' to pull up all possible combinations of random names.
+- You can customize hotkeys for all racial choices in the settings of the plugin.
+
 _This plugin calls a supabase database to generate the names._
 
 
