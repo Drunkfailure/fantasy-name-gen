@@ -73,7 +73,8 @@ const editorCallback = async (editor: Editor, {gender, ancestry, family}: {gende
     new Notice(`Name: ${name}`);
     insertName(editor, name);
   } catch (error) {
-    new Notice(`Error generating name: ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    new Notice(`Error generating name: ${errorMessage}`);
     console.error('Error generating fantasy name:', error);
   }
 }
