@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "minAppVersion": "1.3.5",
   "description": "Insert a random fantasy name.",
-  "author": "Lukewh",
-  "authorUrl": "https://lukewh.com",
-  "fundingUrl": "https://ko-fi.com/lukewh",
+  "author": "Drunkfailure",
+  "authorUrl": "https://github.com/Drunkfailure",
+  "fundingUrl": "https://github.com/sponsors/Drunkfailure",
   "isDesktopOnly": false
 }

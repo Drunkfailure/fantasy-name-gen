@@ -6,7 +6,13 @@ const insertName = (editor: Editor, name: string) => {
   editor.setCursor(cursor.line, cursor.ch + name.length);
 };
 
-const API_URL = "https://fantasyname.lukewh.com?family=t";
+// Your Supabase Edge Function URL
+// Format: https://<project-ref>.supabase.co/functions/v1/<function-name>
+const SUPABASE_URL = "https://twtwwncgwqlvfxcxiokv.supabase.co/functions/v1/generate-fantasy-name";
+
+// Your Supabase Anon Key (found in Project Settings > API)
+// This is safe to use client-side - it respects Row Level Security policies
+const SUPABASE_ANON_KEY = "sb_publishable_Kc4xIXnAZ27dq2nam4d-fg_1Qz0EOaU";
 
 enum ANCESTRY {
   HUMAN = "h",
@@ -35,8 +41,12 @@ type Event = {
 type Family = boolean;
 
 const editorCallback = async (editor: Editor, {gender, ancestry, family}: {gender?: GENDER, ancestry?: ANCESTRY, family?: Family}) => {
-  let url = API_URL;
+  let url = SUPABASE_URL;
   const params = [];
+
+  // Default to family=true (last names included) if not specified
+  const includeFamily = family !== undefined ? family : true;
+  params.push(`family=${includeFamily ? 't' : 'f'}`);
 
   if (gender) {
     params.push(`gender=${gender}`);
@@ -47,13 +57,25 @@ const editorCallback = async (editor: Editor, {gender, ancestry, family}: {gende
   }
 
   if (params.length) {
-    url = `${url}&${params.join("&")}`;
+    url = `${url}?${params.join("&")}`;
   }
 
-  const resp = await requestUrl(url);
-  const name = resp.text;
-  new Notice(`Name: ${name}`);
-    insertName(editor, name); 
+  try {
+    const resp = await requestUrl({
+      url: url,
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      }
+    });
+    const name = resp.text;
+    new Notice(`Name: ${name}`);
+    insertName(editor, name);
+  } catch (error) {
+    new Notice(`Error generating name: ${error.message}`);
+    console.error('Error generating fantasy name:', error);
+  }
 }
 
 export default class FantasyNameGenerator extends Plugin {
