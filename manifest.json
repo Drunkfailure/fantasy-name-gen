@@ -1,7 +1,7 @@
 {
   "id": "fantasy-name",
   "name": "Fantasy name generator",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "minAppVersion": "1.3.5",
   "description": "Insert a fantasy name, choose between human, elf, dwarf, orc, tiefling, dragonborn, goblin.",
   "author": "Drunkfailure",
