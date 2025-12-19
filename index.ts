@@ -25,8 +25,8 @@ enum ANCESTRY {
 }
 
 enum GENDER {
-  MALE = "M",
-  FEMALE = "F",
+  MALE = "m",
+  FEMALE = "f",
   ANY = "a",
 }
 
