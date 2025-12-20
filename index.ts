@@ -80,8 +80,8 @@ const editorCallback = async (editor: Editor, {gender, ancestry, family}: {gende
 }
 
 export default class FantasyNameGenerator extends Plugin {
-  async onload() {
-    console.log("loading fantasy-name plugin");
+  onload() {
+    console.debug("loading DnD-name plugin");
 
     const commands = [
       {
@@ -197,6 +197,6 @@ export default class FantasyNameGenerator extends Plugin {
   }
 
   onunload() {
-    console.log("unloading fantasy-name plugin");
+    console.debug("unloading DnD-name plugin");
   }
 }

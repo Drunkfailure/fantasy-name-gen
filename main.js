@@ -63,8 +63,8 @@ var editorCallback = async (editor, { gender, ancestry, family }) => {
   }
 };
 var FantasyNameGenerator = class extends import_obsidian.Plugin {
-  async onload() {
-    console.log("loading fantasy-name plugin");
+  onload() {
+    console.debug("loading fantasy-name plugin");
     const commands = [
       {
         id: "fantasy-name-insert-human",
@@ -177,6 +177,6 @@ var FantasyNameGenerator = class extends import_obsidian.Plugin {
     }
   }
   onunload() {
-    console.log("unloading fantasy-name plugin");
+    console.debug("unloading fantasy-name plugin");
   }
 };
